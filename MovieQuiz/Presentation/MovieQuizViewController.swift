@@ -25,20 +25,6 @@ final class MovieQuizViewController: UIViewController {
     @IBOutlet private weak var counterLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     
-    @IBAction private func yesButtonClicked(_ sender: Any) {
-        let currentQuestion = questions[currentQuestionIndex]
-        let givenAnswer = true
-        
-        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
-    }
-    
-    @IBAction private func noButtonClicked(_ sender: Any) {
-        let currentQuestion = questions[currentQuestionIndex]
-        let givenAnswer = false
-        
-        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
-    }
-    
     private let questions: [QuizQuestion] = [
         QuizQuestion(
             image: "The Godfather",
@@ -86,6 +72,20 @@ final class MovieQuizViewController: UIViewController {
     private var quizCount: Int = 0
     private var stats: [Statistic] = []
     
+    @IBAction private func yesButtonClicked(_ sender: Any) {
+        let currentQuestion = questions[currentQuestionIndex]
+        let givenAnswer = true
+        
+        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
+    }
+    
+    @IBAction private func noButtonClicked(_ sender: Any) {
+        let currentQuestion = questions[currentQuestionIndex]
+        let givenAnswer = false
+        
+        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -112,14 +112,10 @@ final class MovieQuizViewController: UIViewController {
         let averagePercentage: Float = Float(sumResults) / Float(totalQuestionsCount) * 100
         var message = ""
 
-        if (record != nil) {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd.MM.yyyy HH:mm"
-            let date = formatter.string(from: record!.date)
-            
+        if let record {
             let resultText = "Ваш результат: \(self.correctAnswers)/\(self.questions.count)"
             let quizCountText = "Количество сыгранных квизов: \(self.quizCount)"
-            let recordText = "Рекорд: \(record!.result)/\(self.questions.count) (\(date))"
+            let recordText = "Рекорд: \(record.result)/\(self.questions.count) (\(record.date.dateTimeString))"
             let averageText = "Средняя точность: \(String(format: "%.2f", averagePercentage))%"
             
             message = "\(resultText)\n\(quizCountText)\n\(recordText)\n\(averageText)"
@@ -147,7 +143,7 @@ final class MovieQuizViewController: UIViewController {
     }
     
     private func showAnswerResult(isCorrect: Bool) {
-        if (isCorrect) {
+        if isCorrect {
             correctAnswers += 1
         }
         
@@ -168,7 +164,7 @@ final class MovieQuizViewController: UIViewController {
     }
     
     private func showNextQuestionOrResults() {
-        if (currentQuestionIndex == questions.count - 1) {
+        if currentQuestionIndex == questions.count - 1 {
             showResult()
         } else {
             currentQuestionIndex += 1
