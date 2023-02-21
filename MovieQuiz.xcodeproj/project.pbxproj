@@ -18,6 +18,8 @@
 		9A71AE4129901929006DEA2E /* Statistic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71AE4029901929006DEA2E /* Statistic.swift */; };
 		9A71AE4329901947006DEA2E /* AlertProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71AE4229901947006DEA2E /* AlertProtocol.swift */; };
 		9A8458B12999375C000E0394 /* QuizResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8458B02999375C000E0394 /* QuizResultsViewModel.swift */; };
+		9A8458B329A536FC000E0394 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8458B229A536FC000E0394 /* NetworkClient.swift */; };
+		9A8458B529A53852000E0394 /* MostPopularMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8458B429A53852000E0394 /* MostPopularMovies.swift */; };
 		9ADE578D2969D22B005F3D0F /* YS Display-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9ADE578B2969D22B005F3D0F /* YS Display-Bold.ttf */; };
 		9ADE578E2969D22B005F3D0F /* YS Display-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9ADE578C2969D22B005F3D0F /* YS Display-Medium.ttf */; };
 		AD1ABAB22831907B00B3E448 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1ABAB12831907B00B3E448 /* AppDelegate.swift */; };
@@ -43,6 +45,8 @@
 		9A71AE4029901929006DEA2E /* Statistic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Statistic.swift; path = MovieQuiz/Services/Statistic.swift; sourceTree = SOURCE_ROOT; };
 		9A71AE4229901947006DEA2E /* AlertProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertProtocol.swift; sourceTree = "<group>"; };
 		9A8458B02999375C000E0394 /* QuizResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuizResultsViewModel.swift; path = MovieQuiz/Services/QuizResultsViewModel.swift; sourceTree = SOURCE_ROOT; };
+		9A8458B229A536FC000E0394 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		9A8458B429A53852000E0394 /* MostPopularMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MostPopularMovies.swift; path = MovieQuiz/Services/MostPopularMovies.swift; sourceTree = SOURCE_ROOT; };
 		9ADE578B2969D22B005F3D0F /* YS Display-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Bold.ttf"; sourceTree = "<group>"; };
 		9ADE578C2969D22B005F3D0F /* YS Display-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Medium.ttf"; sourceTree = "<group>"; };
 		AD1ABAAE2831907B00B3E448 /* MovieQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +102,7 @@
 				9A71AE35298FFFA9006DEA2E /* QuestionFactoryProtocol.swift */,
 				9A71AE4229901947006DEA2E /* AlertProtocol.swift */,
 				9A7072652992AA3D00FA8B03 /* StatisticService.swift */,
+				9A8458B229A536FC000E0394 /* NetworkClient.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -110,6 +115,7 @@
 				9A71AE3E29901915006DEA2E /* QuizQuestion.swift */,
 				9A71AE4029901929006DEA2E /* Statistic.swift */,
 				9A8458B02999375C000E0394 /* QuizResultsViewModel.swift */,
+				9A8458B429A53852000E0394 /* MostPopularMovies.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -260,10 +266,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A8458B12999375C000E0394 /* QuizResultsViewModel.swift in Sources */,
+				9A8458B529A53852000E0394 /* MostPopularMovies.swift in Sources */,
 				AD5EE5DE284D7887003966EF /* UIColor+Extensions.swift in Sources */,
 				AD7AFA552836189F00399704 /* Array+Extensions.swift in Sources */,
 				AD1ABAB62831907B00B3E448 /* MovieQuizViewController.swift in Sources */,
 				9A71AE36298FFFA9006DEA2E /* QuestionFactoryProtocol.swift in Sources */,
+				9A8458B329A536FC000E0394 /* NetworkClient.swift in Sources */,
 				9A71AE33298FFF5C006DEA2E /* QuestionFactoryDelegate.swift in Sources */,
 				9A71AE3829900892006DEA2E /* AlertPresenter.swift in Sources */,
 				9A71AE4129901929006DEA2E /* Statistic.swift in Sources */,
