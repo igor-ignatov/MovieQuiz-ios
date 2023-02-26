@@ -12,7 +12,7 @@ fileprivate let questionScore: Float = 7
 
 class QuestionFactory : QuestionFactoryProtocol {
     private let moviesLoader: MoviesLoading
-    private var delegate: QuestionFactoryDelegate?
+    private weak var delegate: QuestionFactoryDelegate?
     private var movies: [MostPopularMovie] = []
     
     init(moviesLoader: MoviesLoading, delegate: QuestionFactoryDelegate?) {
@@ -56,7 +56,14 @@ class QuestionFactory : QuestionFactoryProtocol {
                 imageData = try Data(contentsOf: movie.resizedImageURL)
             } catch {
                 let imageLoadingError = "Unable to load image: " + movie.imageURL.absoluteString
-                self.delegate?.didFailToLoadData(with: ApiError.imageError(imageLoadingError))
+                
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    
+                    self.delegate?.didFailToLoadData(with: ApiError.imageError(imageLoadingError))
+                }
+                
+                return;
             }
             
             let rating = Float(movie.rating) ?? 0

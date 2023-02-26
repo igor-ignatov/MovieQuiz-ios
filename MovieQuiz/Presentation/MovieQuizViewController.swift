@@ -12,9 +12,12 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     private var currentQuestionIndex: Int = 0
     private var correctAnswers: Int = 0
     
-    @IBOutlet private var imageView: UIImageView!
-    @IBOutlet private var textLabel: UILabel!
-    @IBOutlet private var counterLabel: UILabel!
+    @IBOutlet private weak var noButton: UIButton!
+    @IBOutlet private weak var yesButton: UIButton!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var textLabel: UILabel!
+    @IBOutlet private weak var counterLabel: UILabel!
     
     // MARK: - Lifecycle
     
@@ -30,27 +33,21 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         currentQuestionIndex = 0
         correctAnswers = 0
         
-        yesButtonOutlet.isEnabled = true
-        noButtonOutlet.isEnabled = true
+        yesButton.isEnabled = true
+        noButton.isEnabled = true
     }
-    
-    //MARK: - Outlets
-    
-    @IBOutlet weak var noButtonOutlet: UIButton!
-    @IBOutlet weak var yesButtonOutlet: UIButton!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //MARK: - Actions
     
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
         guard let currentQuestion = currentQuestion else { return }
-        yesButtonOutlet.isEnabled = false
+        yesButton.isEnabled = false
         showAnswerResult(isCorrect: true == currentQuestion.correctAnswer)
     }
     
     @IBAction private func noButtonClicked(_ sender: UIButton) {
         guard let currentQuestion = currentQuestion else { return }
-        noButtonOutlet.isEnabled = false
+        noButton.isEnabled = false
         showAnswerResult(isCorrect: false == currentQuestion.correctAnswer)
     }
     
@@ -90,7 +87,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     }
     
     private func showEndGameAlert() {
-        if let statisticService = statisticService {
+        guard let statisticService = statisticService else { return }
+            
             // store current play result
             statisticService.store(correct: correctAnswers, total: questionsAmount)
             
@@ -112,7 +110,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
                 self.restartGame()
             }
             alertPresenter?.show(controller: self, model: resultsAlertModel)
-        }
+        
     }
 
     // MARK: - Private functions
@@ -132,12 +130,12 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     }
     
     private func hideLoadingIndicator() {
-        activityIndicator.isHidden = true
+        activityIndicator.hidesWhenStopped = true
         activityIndicator.stopAnimating()
     }
     
     private func showLoadingIndicator() {
-        activityIndicator.isHidden = false
+        activityIndicator.hidesWhenStopped = false
         activityIndicator.startAnimating()
     }
     
@@ -154,8 +152,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.showNextQuestionOrResults()
             self.hideLoadingIndicator()
-            self.yesButtonOutlet.isEnabled = true
-            self.noButtonOutlet.isEnabled = true
+            self.yesButton.isEnabled = true
+            self.noButton.isEnabled = true
         }
     }
     
