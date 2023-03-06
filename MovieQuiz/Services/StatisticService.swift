@@ -5,7 +5,6 @@
 //  Created by Igor Ignatov on 07.02.2023.
 //
 
-
 import Foundation
 
 struct GameRecord: Codable, Comparable {
@@ -44,7 +43,7 @@ final class StatisticServiceImplementation: StatisticService {
         
         set {
             guard let data = try? JSONEncoder().encode(newValue) else {
-                print("Невозможно сохранить результат")
+                print("Unable to store game result")
                 return
             }
             
