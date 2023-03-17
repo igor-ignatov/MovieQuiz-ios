@@ -5,7 +5,6 @@
 //  Created by Igor Ignatov on 16.03.2023.
 //
 
-import Foundation
 import UIKit
 
 final class MovieQuizPresenter: QuestionFactoryDelegate {
@@ -91,9 +90,9 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         
         viewController?.showLoadingIndicator()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.showNextQuestionOrResults()
-            self.viewController?.hideLoadingIndicator()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            self?.showNextQuestionOrResults()
+            self?.viewController?.hideLoadingIndicator()
         }
     }
     

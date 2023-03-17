@@ -78,6 +78,8 @@ class MovieQuizUITests: XCTestCase {
         XCTAssertTrue(app.alerts[expectedAlertTitle].exists)
         XCTAssertTrue(alert.label == expectedAlertTitle)
         XCTAssertTrue(alert.buttons.firstMatch.label == expectedButtonLabel)
+        app.alerts[expectedAlertTitle].buttons[expectedButtonLabel].tap()
+        XCTAssertFalse(app.alerts[expectedAlertTitle].exists)
     }
     
 }

@@ -10,8 +10,7 @@ import XCTest
 @testable import MovieQuiz
 
 // MARK: Tests
-class MovieQuizPresenterTest: XCTestCase {
-    
+final class MovieQuizPresenterTest: XCTestCase {
     let presenter = MovieQuizPresenter(viewController: MovieQuizViewControllerProtocolMock())
     
     func testSConverter() throws {
